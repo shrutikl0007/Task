@@ -1,0 +1,29 @@
+<!-- view_books.html -->
+{% extends "base.html" %}
+{% block title %}View Books{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <h2>View Books</h2>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Author</th>
+                    <th>Stock</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for book in books %}
+                <tr>
+                    <td>{{ book.title }}</td>
+                    <td>{{ book.author }}</td>
+                    <td>{{ book.stock }}</td>
+                    <td>{% if book.status %}Available{% else %}Not Available{% endif %}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

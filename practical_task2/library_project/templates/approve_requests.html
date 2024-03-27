@@ -1,0 +1,33 @@
+<!-- approve_requests.html -->
+{% extends "base.html" %}
+{% block title %}Approve Requests{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <h2>Approve Requests</h2>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>User</th>
+                    <th>Book</th>
+                    <th>Date Requested</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for request in requests %}
+                <tr>
+                    <td>{{ request.user.username }}</td>
+                    <td>{{ request.book.title }}</td>
+                    <td>{{ request.date_requested }}</td>
+                    <td>
+                        {% if not request.approved %}
+                        <a href="{% url 'approve_request' request.id %}" class="btn btn-success">Approve</a>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
